@@ -6,16 +6,17 @@ This is a set of Grafana dashboards for database and system monitoring using Pro
  * Cross Server Graphs
  * Disk Performance
  * Disk Space
- * MariaDB
  * MongoDB Cluster Summary
  * MongoDB Overview
  * MongoDB ReplSet
  * MongoDB RocksDB
  * MongoDB WiredTiger
  * MongoDB MMAPv1
+ * MongoDB InMemory
  * MySQL InnoDB Metrics
  * MySQL InnoDB Metrics Advanced
- * MySQL MyISAM Metrics
+ * MySQL InnoDB Compression
+ * MySQL MyISAM/Aria Metrics
  * MySQL Overview
  * MySQL Performance Schema
  * MySQL Query Response Time
@@ -23,6 +24,7 @@ This is a set of Grafana dashboards for database and system monitoring using Pro
  * MySQL Table Statistics
  * MySQL TokuDB Graphs
  * MySQL User Statistics
+ * MySQL Command Handler Counters Compare
  * PXC/Galera Cluster Overview
  * PXC/Galera Graphs
  * Prometheus
@@ -149,3 +151,4 @@ As a general rule of thumb, please try to create bug reports that are:
 - *Specific.* Include as much detail as possible: which version, what environment, etc.
 - *Unique.* Do not duplicate existing tickets.
 - *Scoped to a Single Bug.* One bug per report.
+

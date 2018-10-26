@@ -1,0 +1,100 @@
+<style>
+
+    #pmm-update-widget p {
+        margin-bottom: 0;
+    }
+
+    #pmm-update-widget .check-update-button {
+        position: relative;
+        border-radius: 50%;
+        height: 20px;
+        width: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        border: none;
+        color: #27b4e7;
+    }
+
+    #pmm-update-widget .update-button {
+        width: 100%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        background: #292929 none;
+        box-sizing: border-box;
+    }
+
+    #pmm-update-widget .update-button:disabled {
+        border: 2px solid #292929;
+        background: transparent;
+    }
+
+    section.state {
+        height: 65px;
+        /*margin-bottom: 10px;*/
+        margin: 10px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        border: 2px solid #292929;
+    }
+
+    section.available-version {
+        margin-top: 5px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    section.available-version .version-wrapper a {
+        color: #27b4e7;
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+</style>
+<div id="pmm-update-widget">
+    <header>
+        <h2 class="update-title">Updates</h2>
+        <p class="current-version">Current version:
+            <span>{{currentVersion}} <em>{{currentReleaseDate}}</em></span>
+            <span ng-if="!currentVersion">{{version}}</span>
+        </p>
+    </header>
+    <section class="available-version" ng-if="shouldBeUpdated">
+        <p>Available version:&nbsp;</p>
+        <div class="version-wrapper">
+            <p>{{nextVersion}} <em>{{newReleaseDate}}</em></p>
+            <a href="https://www.percona.com/doc/percona-monitoring-and-management/release-notes/{{linkVersion}}.html"
+               class="text-primary" target="_blank">What's new?</a>
+        </div>
+    </section>
+    <section class="state" ng-if="!shouldBeUpdated">
+        <div class="state-inner" ng-if="!isUpToDate">
+            <p class="text-center">No updates are available</p>
+            <p class="text-center">PMM checks for updates once a day</p>
+        </div>
+        <p class="text-center" ng-if="isUpToDate">You are up to date</p>
+    </section>
+    <button class="btn btn-secondary btn-block update-button"
+            ng-if="shouldBeUpdated"
+            ng-click="update()"
+            ng-disabled="disableUpdate">
+        <span ng-if="shouldBeUpdated && !disableUpdate">
+            <i class="fa fa-download"></i>
+            Update to {{nextVersion}}
+        </span>
+        <span ng-if="disableUpdate">Updates are disabled</span>
+    </button>
+    <footer>
+        <p>Last check: {{lastCheckDate}}</p>
+        <button ng-click="checkForUpdate()" class="check-update-button"><i class="fa fa-spin fa-refresh" id="refresh"></i></button>
+    </footer>
+</div>
